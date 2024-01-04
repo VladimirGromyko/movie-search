@@ -6,10 +6,10 @@
     </header>
     <div class="movies">
       <h3>All Movies</h3>
-      <Movie v-for="movie of movieStore.movies"
+      <Movie v-for="movie of movies"
              :key="movie.id"
              :movie="movie" />
-      {{movieStore.movies}}
+      {{movies}}
     </div>
   </main>
 
@@ -18,9 +18,12 @@
 <script setup lang="ts">
 import {useMovieStore} from "./stores/MovieStore";
 import Movie from "./components/Movie.vue";
+import {storeToRefs} from "pinia";
 
 
 const movieStore = useMovieStore()
+const { movies } = storeToRefs(movieStore)
+
 </script>
 
 

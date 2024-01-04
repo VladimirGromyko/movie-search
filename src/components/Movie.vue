@@ -1,14 +1,14 @@
 <template>
   <div class="movie">
-    <img :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2${props.movie.poster_path}`"
-         :alt="props.movie.original_title"
+    <img :src="`https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path}`"
+         :alt="movie.original_title"
          class="movie-img"
     >
     <div>
       <div class="movie-name">
-        {{props.movie.original_title}} ({{ props.movie.release_date }})
+        {{movie.original_title}} ({{ movie.release_date }})
       </div>
-      <span class="movie-overview">{{ props.movie.overview }}</span>
+      <span class="movie-overview">{{ movie.overview }}</span>
     </div>
 
   </div>
@@ -16,14 +16,8 @@
 
 <script setup lang="ts">
 import {MovieType} from "../stores/MovieStore";
+defineProps<{movie:MovieType}>()
 
-const props = withDefaults(defineProps<{movie:MovieType}>(),{
-  // movie: {
-  //   type: Object,
-  //   required: true,
-  //   default: () => {}
-  // }
-})
 </script>
 
 <style lang="css" scoped>
