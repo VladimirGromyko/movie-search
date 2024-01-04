@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia'
 
-export type MovieType = {
+export interface MovieType {
     id: number,
     original_title: string,
     overview: string
@@ -9,7 +9,7 @@ export type MovieType = {
     isWatched: boolean,
 }
 type MoviesType = MovieType[]
-export type MovieStoreType = {
+export interface MovieStoreType {
     movies: MoviesType,
 }
 export const useMovieStore = defineStore('movieStore', {

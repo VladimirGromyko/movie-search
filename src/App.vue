@@ -15,9 +15,10 @@
 
 </template>
 
-<script setup>
-import {useMovieStore} from "./stores/MovieStore.ts";
+<script setup lang="ts">
+import {useMovieStore} from "./stores/MovieStore";
 import Movie from "./components/Movie.vue";
+
 
 const movieStore = useMovieStore()
 </script>
