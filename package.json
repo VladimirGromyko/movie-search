@@ -9,7 +9,7 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "vue": "^3.3.11",
