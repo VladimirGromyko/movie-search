@@ -17,7 +17,7 @@
         <button class="btn movie-buttons-delete" @click="movieStore.deleteMovie(movie.id)">Delete</button>
       </div>
       <div class="movie-buttons" v-else>
-        <button class="btn btn_green">
+        <button class="btn btn_green" @click="searchStore.addToUserMovies(movie)">
           Add
         </button>
       </div>
@@ -27,12 +27,15 @@
 
 <script setup lang="ts">
 import {MovieType, useMovieStore} from "../stores/MovieStore";
+import {useSearchStore} from "../stores/SearchStore.ts";
+
 type moviePropsType = {
   movie:MovieType,
-  isSearch: boolean
+  isSearch?: boolean
 }
 defineProps<moviePropsType>()
 const movieStore = useMovieStore()
+const searchStore = useSearchStore()
 </script>
 
 <style lang="css" scoped>

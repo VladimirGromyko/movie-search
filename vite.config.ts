@@ -6,6 +6,6 @@ export default defineConfig({
   base: "/movie-search",
   plugins: [vue()],
   server: {
-    port: 8080
+    port: 8082
   },
 })
