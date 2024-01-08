@@ -28,7 +28,9 @@
              :key="movie.id"
              :movie="movie" />
     </div>
-    <div class="search" v-else>Search</div>
+    <div class="search" v-else>
+      <Search />
+    </div>
   </main>
 
 </template>
@@ -36,6 +38,7 @@
 <script setup lang="ts">
 import {useMovieStore} from "./stores/MovieStore";
 import Movie from "./components/Movie.vue";
+import Search from "./components/Search.vue";
 import {storeToRefs} from "pinia";
 
 const setTab = (id: number) => {
