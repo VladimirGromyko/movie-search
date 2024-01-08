@@ -5,8 +5,16 @@
       <h2>My favorite Movies</h2>
     </header>
     <div class="tabs">
-      <button :class="['btn', {btn_green: movieStore.activeTab === 1}]">Favorite</button>
-      <button :class="['btn', {btn_green: movieStore.activeTab === 2}]">Search</button>
+      <button :class="['btn', {btn_green: movieStore.activeTab === 1}]"
+              @click="setTab(1)"
+      >
+        Favorite
+      </button>
+      <button :class="['btn', {btn_green: movieStore.activeTab === 2}]"
+              @click="setTab(2)"
+      >
+        Search
+      </button>
     </div>
     <div class="movies" v-if="movieStore.activeTab === 1">
       <div>
@@ -30,7 +38,9 @@ import {useMovieStore} from "./stores/MovieStore";
 import Movie from "./components/Movie.vue";
 import {storeToRefs} from "pinia";
 
-
+const setTab = (id: number) => {
+  movieStore.setActiveTab(id)
+}
 const movieStore = useMovieStore()
 const { movies } = storeToRefs(movieStore)
 
