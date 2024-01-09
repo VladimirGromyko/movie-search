@@ -10,7 +10,7 @@ This mini-project was created as an example of a page for searching and creating
 
 ## Technology stack:
 
-### Vue 3 + TypeScript + Vite, gh-pages HTML, CSS, JavaScript, Pinia, LocalStorage
+### Vue 3 + TypeScript + Vite, gh-pages, HTML, CSS, JavaScript, Pinia, LocalStorage
 
 ## [Link](https://vladimirgromyko.github.io/movie-search/) 
 to the project deployed on gh pages
