@@ -1,5 +1,5 @@
 import {defineStore} from 'pinia'
-import {computed, ref, Ref} from "vue";
+import {computed, ref, Ref, watch} from "vue";
 
 export type MovieType = {
     id: number,
@@ -13,6 +13,12 @@ export type MovieType = {
 export const useMovieStore = defineStore('movieStore', () => {
     const movies: Ref<MovieType[]> = ref([])
     const activeTab = ref(2)
+
+    const moviesInLocalStorage = localStorage.getItem('movies')
+    if (moviesInLocalStorage) {
+        movies.value = JSON.parse(moviesInLocalStorage)._value
+    }
+
     const watchedMovies= computed(() => {
             return movies.value.filter((el) => el.isWatched)
     })
@@ -25,6 +31,10 @@ export const useMovieStore = defineStore('movieStore', () => {
             movies.value[idx].isWatched = !movies.value[idx].isWatched
     }
     const deleteMovie = (id: number) => (movies.value = movies.value.filter((el) => el.id !== id))
+
+    watch(() => movies, (state) => {
+        localStorage.setItem('movies', JSON.stringify(state))
+    }, {deep: true})
 
     return {
         movies,
