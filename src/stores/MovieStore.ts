@@ -1,4 +1,5 @@
 import {defineStore} from 'pinia'
+import {computed, ref, Ref} from "vue";
 
 export type MovieType = {
     id: number,
@@ -8,33 +9,30 @@ export type MovieType = {
     release_date: string,
     isWatched: boolean,
 }
-export type MovieStoreType = {
-    movies: MovieType[],
-    activeTab: number
-}
-export const useMovieStore = defineStore('movieStore', {
-    state: (): MovieStoreType => ({
-        movies: [],
-        activeTab: 2,
-    }),
-    getters: {
-        watchedMovies(state) {
-            return state.movies.filter((el) => el.isWatched)
-        },
-        totalCountMovies(state) {
-            return state.movies.length
-        }
-    },
-    actions: {
-        setActiveTab(id: number) {
-            this.activeTab = id
-        },
-        toggleWatched(id: number) {
-            const idx = this.movies.findIndex((el) => el.id === id)
-            this.movies[idx].isWatched = !this.movies[idx].isWatched
-        },
-        deleteMovie(id: number) {
-            this.movies = this.movies.filter((el) => el.id !== id)
-        }
-    },
+
+export const useMovieStore = defineStore('movieStore', () => {
+    const movies: Ref<MovieType[]> = ref([])
+    const activeTab = ref(2)
+    const watchedMovies= computed(() => {
+            return movies.value.filter((el) => el.isWatched)
+    })
+    const totalCountMovies = computed(() => {
+            return movies.value.length
+    })
+    const setActiveTab = (id: number) => (activeTab.value = id)
+    const toggleWatched = (id: number) => {
+            const idx = movies.value.findIndex((el) => el.id === id)
+            movies.value[idx].isWatched = !movies.value[idx].isWatched
+    }
+    const deleteMovie = (id: number) => (movies.value = movies.value.filter((el) => el.id !== id))
+
+    return {
+        movies,
+        activeTab,
+        watchedMovies,
+        totalCountMovies,
+        setActiveTab,
+        toggleWatched,
+        deleteMovie
+    }
 })
