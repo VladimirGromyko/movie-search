@@ -1,6 +1,6 @@
 # My Favorite Movies.
 
-This mini-project was created as an example of a page for searching and creating your own collection of films.
+This Mini-project was created as an example of a page for searching and creating your own collection of films.
 
 ## Here you can
 
